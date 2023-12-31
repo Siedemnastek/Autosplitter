@@ -225,7 +225,7 @@ split {
         return true;
     }
     if (current.Room==73 && current.Cutscene==0 && old.Cutscene==1) vars.Count++; //Malice at the Palace
-    if (current.Room==73 && current.Load2 && !old.Load2 && vars.Count==1) 
+    if (current.Room==67 && current.Cutscene==1 && old.Cutscene==0 && vars.Count==1)
     {
         vars.Count=0;
         return true; 
