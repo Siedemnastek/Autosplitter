@@ -7,7 +7,7 @@ state ("LEGOIndy2")
     bool Load2: 0xACBF08;
     bool Load3: 0xC5B838;
 }
-//1.2
+//1.3
 startup
 {
     vars.splitDelay = new Stopwatch();
@@ -204,7 +204,7 @@ split {
 
     //Temple of Doom
     if (current.Room==67) vars.splitDelay.Reset();
-    if (current.Room==67 && old.Room !=73) vars.Count=0;
+    if (current.Room==67 && old.Room !=73 && current.Cutscene==0) vars.Count=0;
     if (current.Room==68 && current.Cutscene==0 && old.Cutscene==1 && vars.Count==0) vars.Count++; //Lao Chase
     if (current.Room==68 && current.Cutscene==1 && vars.Count==1)
     {
@@ -225,7 +225,7 @@ split {
         return true;
     }
     if (current.Room==73 && current.Cutscene==0 && old.Cutscene==1) vars.Count++; //Malice at the Palace
-    if (current.Room==67 && current.Cutscene==1 && old.Cutscene==0 && vars.Count==1)
+    if (current.Room==67 && current.Cutscene==1 && old.Cutscene==0 && vars.Count==1) 
     {
         vars.Count=0;
         return true; 
