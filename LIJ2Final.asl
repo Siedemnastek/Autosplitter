@@ -7,7 +7,7 @@ state ("LEGOIndy2")
     bool Load2: 0xACBF08;
     bool Load3: 0xC5B838;
 }
-
+//1.2
 startup
 {
     vars.splitDelay = new Stopwatch();
