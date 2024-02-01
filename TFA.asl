@@ -44,5 +44,5 @@ isLoading
 {
     return current.Load == 0 && current.Status != 1 || current.Load != 0 && current.Status == 1;
 }
-/v1.1
+//v1.1
 
