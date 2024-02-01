@@ -38,10 +38,11 @@ start
 }
 split
 {
-    if (current.Status == 1 && old.Status == 0) return true;  
+    if (current.Status == 1 && old.Status == 0 && current.Load == 0) return true;  
 }
 isLoading
 {
-    return current.Load == 0 && current.Status != 1;
+    return current.Load == 0 && current.Status != 1 || current.Load != 0 && current.Status == 1;
 }
+/v1.1
 
