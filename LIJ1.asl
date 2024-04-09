@@ -7,6 +7,9 @@ state("LEGOIndy")
     int newgamet : 0x6CC7A8;
     int stream : 0x6CC944;
     bool Loading: 0x5C3D24;
+    bool Loading2: 0x6CC7A8;
+    bool Reset: 0x572DA8;
+    bool Transitions: 0x6C1584;
 }
 
 startup
@@ -38,7 +41,7 @@ reset
 
 isLoading
 {
-    return current.Loading;
+    return current.Loading || current.Loading2 || current.Reset || current.Transitions;
 }
 
 exit 
