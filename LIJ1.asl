@@ -9,7 +9,6 @@ state("LEGOIndy")
     bool Loading: 0x5C3D24;
     bool Loading2: 0x6CC7A8;
     bool Reset: 0x572DA8;
-    bool Transitions: 0x6C1584;
 }
 
 startup
@@ -41,7 +40,7 @@ reset
 
 isLoading
 {
-    return current.Loading || current.Loading2 || current.Reset || current.Transitions;
+    return current.Loading || current.Loading2 || current.Reset;
 }
 
 exit 
