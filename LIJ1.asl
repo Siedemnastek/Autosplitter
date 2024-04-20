@@ -1,4 +1,4 @@
-//Splitting by Siedemnastek, load remover by Tfresh
+//Splitting by Siedemnastek, load remover by Tfresh and Sied
 state("LEGOIndy")
 {
     int status : 0x6D39F0;
