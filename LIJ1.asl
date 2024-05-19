@@ -1,4 +1,4 @@
-//Splitting by Siedemnastek, load remover by Tfresh and Sied
+//Splitting by Siedemnastek, load remover by Tfresh
 state("LEGOIndy")
 {
     int status : 0x6D39F0;
@@ -40,7 +40,7 @@ reset
 
 isLoading
 {
-    return current.Loading || current.Loading2 || current.Reset;
+    return current.Loading || current.Loading2 || current.Reset && current.stream == 0;
 }
 
 exit 
