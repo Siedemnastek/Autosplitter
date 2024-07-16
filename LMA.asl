@@ -14,5 +14,7 @@ split
 }
 isLoading
 {
-    return !current.Load && !current.Status;
+    return !current.Load;
 }
+
+//Load remover no longer unpauses on status screens due to the address flipping in some random rooms, can't find a replacement
