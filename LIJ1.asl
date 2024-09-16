@@ -1,11 +1,15 @@
-//Splitting by Siedemnastek, load remover by Tfresh
+//Splitting by Siedemnastek, load remover by Tfresh and Sied
+//Release candidate 1
 state("LEGOIndy")
 {
-    int status : 0x6D39F0;
+    int status : 0x6D39F0; //unused
     int statust : 0x6927D8;
     int newgame : 0x5C43C4;
     int newgamet : 0x6CC7A8;
     int stream : 0x6CC944;
+    int door: 0x572EF0; //Old value for transitions, ended up being used to stop the reset address from removing random frames all over the place
+    int menu: 0x56F864; 
+    bool transition: 0x6C1664; 
     bool Loading: 0x5C3D24;
     bool Loading2: 0x6CC7A8;
     bool Reset: 0x572DA8;
@@ -40,7 +44,7 @@ reset
 
 isLoading
 {
-    return current.Loading || current.Loading2 || current.Reset && current.stream == 0;
+    return current.Loading || current.Loading2 || current.Reset && current.door == 10000|| current.transition && current.menu < 1;
 }
 
 exit 
