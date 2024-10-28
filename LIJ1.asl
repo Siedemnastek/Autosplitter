@@ -1,5 +1,4 @@
 //Splitting by Siedemnastek, load remover by Tfresh and Sied
-//Release candidate 1
 state("LEGOIndy")
 {
     int status : 0x6D39F0; //unused
@@ -22,11 +21,6 @@ startup
     settings.Add("crusade", false, "Last Crusade");
     settings.Add("fp", false, "FP/AA/100%");
     refreshRate = 255;
-
-    var timingMessage = MessageBox.Show (
-            "Hi! This is here to ensure you are using the beta version of the new load remover.",
-            "LiveSplit | LEGO Indiana Jones"
-        );
 }
 
 split
