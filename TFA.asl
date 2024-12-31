@@ -45,7 +45,7 @@ split
 {
     if (current.Status == 1 && old.Status == 0 && current.Load == 0) return true;  
 
-    if (settings["room"] &&
+    if (settings["room"] && (
     (current.Area == "01_Th" && old.Area == "01_A2" && current.Level == "01") ||
     (current.Area2 == "01_TheBattleOfEndor_StoryComplete" && old.Area2 == "01_TheBattleOfEndor_TheBattleOfEndor" && current.Level == "01") ||
     (current.Level == "07" && old.Level == "Hu") ||
@@ -56,9 +56,9 @@ split
     (current.Level == "09" && old.Level == "Hu") ||
     (current.Area == "09_Ni" && old.Area == "09_A_" && current.Level == "09") ||
     (current.Area == "09_Ni" && old.Area == "09_B_" && current.Level == "09") ||
-    (current.Level == "10" && old.Level == "Hu") &&
+    (current.Level == "10" && old.Level == "Hu") ||
     (current.Area2 == "10_ChewieWereHome_ChewieWereHome" && current.Cutscene && !old.Cutscene && current.Level == "10") ||
-    (current.Area == "10_C_" && old.Area == "10_B_" && current.Level == "10") ||
+    (current.Area == "10_B_" && current.Cutscene && !old.Cutscene && current.Level == "10") ||
     (current.Level == "11" && old.Level == "Hu") ||
     (current.Area == "11_Je" && old.Area == "11_B_" && current.Level == "11") ||
     (current.Area == "11_D_" && old.Area == "11_Je" && current.Level == "11") ||
@@ -71,10 +71,10 @@ split
     (current.Area == "14_C_" && old.Area == "14_B_" && current.Level == "14") ||
     (current.Level == "15" && old.Level == "Hu") ||
     (current.Area == "15_A2" && current.Cutscene && !old.Cutscene && current.Level == "15") ||
-    (current.Area == "15_B" && current.Cutscene && !old.Cutscene && current.Level == "15") ||
+    (current.Area == "15_B_" && current.Cutscene && !old.Cutscene && current.Level == "15") ||
     (current.Area == "16_Th" && old.Area == "16_A3" && current.Level == "16") ||
     (current.Level == "21" && old.Level == "Hu")
-    ) return true;
+    )) return true;
     if (current.Area == "21_A_" && current.Cutscene && !old.Cutscene && current.Level == "21") return true;
 }
 isLoading
