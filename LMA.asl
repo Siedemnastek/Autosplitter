@@ -6,7 +6,7 @@ state("LEGOMARVELAvengers")
 state("LEGOMARVELAvengers_DX11")
 {
     bool Load: 0x2416208;
-    bool Status: 0x024163F0, 0x40, 0x28, 0x40, 0x10, 0xA0, 0x80, 0x68;
+    bool Status: 0x22E6A30;
 }
 split
 {
@@ -14,7 +14,6 @@ split
 }
 isLoading
 {
-    return !current.Load;
+    return !current.Load && !current.Status;
 }
 
-//Load remover no longer unpauses on status screens due to the address flipping in some random rooms, can't find a replacement
