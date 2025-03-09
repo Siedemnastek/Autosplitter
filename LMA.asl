@@ -10,7 +10,7 @@ state("LEGOMARVELAvengers_DX11")
 }
 split
 {
-    if (current.Status && !old.Status) return true;
+    if (current.Status && !old.Status && !current.Load) return true;
 }
 isLoading
 {
