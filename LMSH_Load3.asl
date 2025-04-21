@@ -6,11 +6,12 @@ state("LEGOMARVEL")
     bool OpenGame: 0x1013F14;
     bool Fade: 0x1105C28;
     bool Fade2: 0x15B095C;
+    bool Load: 0x15955F4;
 }
 
 isLoading
 {
-    return current.CornerLoads | current.IntoHub | current.OpenGame | current.Fade | current.Fade2;
+    return (current.CornerLoads | current.IntoHub | current.OpenGame | current.Fade | current.Fade2) && !current.Load;
 }
 
 exit 
