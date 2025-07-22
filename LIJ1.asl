@@ -12,6 +12,7 @@ state("LEGOIndy")
     bool Loading: 0x5C3D24;
     bool Loading2: 0x6CC7A8;
     bool Reset: 0x572DA8;
+    int GizLoop: 0x6D27B4;
 }
 
 startup
@@ -20,7 +21,32 @@ startup
     settings.Add("temple", false, "Temple of Doom");
     settings.Add("crusade", false, "Last Crusade");
     settings.Add("fp", false, "FP/AA/100%");
+    settings.Add("giz", true, "Show Gizmo Loop value");
     refreshRate = 255;
+
+    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
+}
+
+update 
+{
+    if (settings["giz"]) 
+    {
+        vars.Helper.Texts["gizloop"].Left = "Gizmo Loop: ";
+        vars.Helper.Texts["gizloop"].Right = current.GizLoop + "";
+    }
+}
+
+onStart 
+{
+    if (settings["giz"]) 
+    {
+        vars.Helper.Texts["gizloop"].Left = "Gizmo Loop: ";
+        vars.Helper.Texts["gizloop"].Right = current.gizmovalue + "";
+    } 
+    else 
+    {
+        vars.Helper.Texts.Remove("gizmo");
+    }
 }
 
 split
