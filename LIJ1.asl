@@ -45,7 +45,7 @@ onStart
     } 
     else 
     {
-        vars.Helper.Texts.Remove("gizmo");
+        vars.Helper.Texts.Remove("gizloop");
     }
 }
 
