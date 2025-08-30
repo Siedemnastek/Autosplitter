@@ -1,4 +1,4 @@
-//Splitting by Siedemnastek, load remover by Tfresh and Sied
+//Splitting by Siedemnastek, load remover by Tfresh and Sied. Room splitting by Lazer
 state("LEGOIndy")
 {
     int status : 0x6D39F0; //unused
@@ -13,6 +13,7 @@ state("LEGOIndy")
     bool Loading2: 0x6CC7A8;
     bool Reset: 0x572DA8;
     int GizLoop: 0x6D27B4;
+    int roomSplit: 0x6ADFCC;
 }
 
 startup
@@ -21,10 +22,13 @@ startup
     settings.Add("temple", false, "Temple of Doom");
     settings.Add("crusade", false, "Last Crusade");
     settings.Add("fp", false, "FP/AA/100%");
+    settings.Add("room", false, "Room Splitter");
     settings.Add("giz", true, "Show Gizmo Loop value");
     refreshRate = 255;
 
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
+
+    vars.skipRooms = new List<int> {15,26,35,46,57,67,79,90,98,106,114,126,140,150,159,173,181,192,203};
 }
 
 update 
@@ -55,6 +59,7 @@ split
     else if (settings["any"] && current.stream == 67 && old.stream == 66) return true;  
     else if (settings["temple"] && current.stream == 126 && old.stream == 125) return true;
     else if (settings["crusade"] && current.stream == 192 && old.stream == 191) return true;
+    else if (settings ["room"] && (current.stream == 67 && old.stream == 66) || ((current.roomSplit != old.roomSplit) && old.roomSplit != 0 && !vars.skipRooms.Contains(current.stream))) return true;
 }
 
 start
