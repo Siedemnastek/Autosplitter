@@ -29,7 +29,7 @@ startup
 
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
 
-    vars.skipRooms = new List<int> {15,26,35,46,57,79,90,98,106,114,126,140,150,159,173,181,192,203};
+    vars.skipRooms = new List<int> {11,15,26,35,46,57,79,90,95,98,106,114,126,140,150,159,173,181,192,203};
 }
 
 update 
@@ -61,6 +61,7 @@ split
     else if (settings["temple"] && current.stream == 126 && old.stream == 125) return true;
     else if (settings["crusade"] && current.stream == 192 && old.stream == 191) return true;
     else if (settings ["room"] && (current.roomSplit != old.roomSplit) && old.roomSplit != 0 && !vars.skipRooms.Contains(current.stream)) return true;
+    else if (settings ["room"] && old.stream == 10 && current.stream == 11) return true;
 }
 
 start
