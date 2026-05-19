@@ -77,6 +77,7 @@ startup {
     //settings.Add("start_story", false, "(EXPERIMENTAL) Start on New Game (Add 0.583 offset to your timer)");
     settings.Add("h", true, "Hero Story/Free Play (End on 2-5)");
     settings.Add("v", false, "Villain Story/Any% (End on 5-5)");
+    settings.Add("start_villain", false, "Start on loading into 4-1");
     settings.Add("split_continue", true, "Split at \"Continue Story\" or \"Return to hub\" in the status screen");
     settings.Add("1_1_0studs", true, "Going for 0 studs in 1-1 Story OR playing Freeplay", "split_continue"); // if true, split when changeCount == 1, if false, split when changeCount == 2
     settings.Add("split_status", false, "Split at the beginning of status screens");
@@ -142,7 +143,11 @@ isLoading {
 }
 
 start {
-    if (current.Newgame == 4294901760 && current.roomID == 0 && current.Menu == 2) return true;
+    if (
+        (current.Newgame == 4294901760 && current.roomID == 0 && current.Menu == 2) ||
+        (settings["start_villain"] && old.roomID == 23 && current.roomID == 24)
+    )
+    return true;
 }
 
 split {
