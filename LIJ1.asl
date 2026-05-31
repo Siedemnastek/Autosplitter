@@ -14,6 +14,7 @@ state("LEGOIndy")
     bool Reset: 0x572DA8;
     int GizLoop: 0x6D27B4;
     int roomSplit: 0x6ADFCC;
+	bool cutscene: 0x5BBC5F;
 }
 
 startup
@@ -24,12 +25,13 @@ startup
     settings.Add("fp", false, "FP/AA/100%");
     settings.Add("room", false, "Room Splitter");
     settings.Add("roomStart", false, "Start timer on room change");
+	settings.Add("cutsceneRemover", false, "Pause timer during cutscenes (for NOCUT segments)");
     settings.Add("giz", true, "Show Gizmo Loop value");
     refreshRate = 255;
 
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
 
-    vars.skipRooms = new List<int> {11,15,26,35,46,57,79,90,95,98,106,114,126,140,150,159,173,181,192,203};
+    vars.skipRooms = new List<int> {11,15,26,35,46,57,79,90,95,98,106,114,126,140,150,159,160,173,181,192,203};
 }
 
 update 
@@ -62,6 +64,7 @@ split
     else if (settings["crusade"] && current.stream == 192 && old.stream == 191) return true;
     else if (settings ["room"] && (current.roomSplit != old.roomSplit) && old.roomSplit != 0 && !vars.skipRooms.Contains(current.stream)) return true;
     else if (settings ["room"] && old.stream == 10 && current.stream == 11) return true;
+	else if (settings ["room"] && old.stream == 77 && current.stream == 78) return true;
 }
 
 start
@@ -77,7 +80,7 @@ reset
 
 isLoading
 {
-    return current.Loading || current.Loading2 || current.Reset && current.door == 10000|| current.transition && current.menu < 1;
+    return current.Loading || current.Loading2 || current.Reset && current.door == 10000 || current.transition && current.menu < 1 || (settings["cutsceneRemover"] && current.cutscene);
 }
 
 exit 
